@@ -1,0 +1,14 @@
+name: 'Setup UKHomeOffice/kd'
+description: 'Setup your GitHub Actions environment by adding UKHomeOffice/kd'
+author:  'Ministry of Justice - HMPPS EMS Platform Team <hmpps-ems-platform-team@digital.justice.gov.uk>'
+branding:
+  icon: 'package'
+  color: 'blue'
+inputs:
+  kd_version:
+    description: 'Version of UKHomeOffice/kd to download'
+    required: true
+    default: 'latest'
+runs:
+  using: 'docker'
+  image: './Dockerfile'
