@@ -17,9 +17,10 @@ function parse_verion() {
 
 function install_kd() {
   kdDownloadUrl="https://github.com/UKHomeOffice/kd/releases/download/${kdVersion}/kd_linux_amd64"
+  mkdir -p bin
   wget ${kdDownloadUrl} -O /tmp/kd_linux_amd64
   chmod +x /tmp/kd_linux_amd64
-  mv /tmp/kd_linux_amd64 /usr/local/bin/kd
+  mv /tmp/kd_linux_amd64 bin/kd
 }
 
 #######################################
