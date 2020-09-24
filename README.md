@@ -11,5 +11,5 @@ Basic:
 steps:
   - uses: actions/checkout@v2
   - uses: ministryofjustice/setup-kd@main
-  - run: bin/kd --file deployment.yml
+  - run: github-bin/kd --file deployment.yml
 ```
