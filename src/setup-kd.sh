@@ -7,6 +7,11 @@ set -o xtrace
 #######################################
 # Functions
 #######################################
+declare -xr GITHUB_BIN="github-bin"
+
+#######################################
+# Functions
+#######################################
 function parse_verion() {
   if [[ "${INPUT_KD_VERSION}" == "latest" ]]; then
     kdVersion=$(curl https://api.github.com/repos/UKHomeOffice/kd/releases/latest | jq -r '.tag_name')
@@ -15,16 +20,20 @@ function parse_verion() {
   fi
 }
 
+function setup_github_bin() {
+  mkdir -p ${GITHUB_BIN}
+}
+
 function install_kd() {
   kdDownloadUrl="https://github.com/UKHomeOffice/kd/releases/download/${kdVersion}/kd_linux_amd64"
-  mkdir -p bin
-  wget ${kdDownloadUrl} -O /tmp/kd_linux_amd64
-  chmod +x /tmp/kd_linux_amd64
-  mv /tmp/kd_linux_amd64 bin/kd
+  wget ${kdDownloadUrl} -O /tmp/kd
+  chmod +x /tmp/kd
+  mv /tmp/kd ${GITHUB_BIN}
 }
 
 #######################################
 # Script
 #######################################
 parse_verion
+setup_github_bin
 install_kd
